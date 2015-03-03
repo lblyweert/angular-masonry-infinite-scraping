@@ -1,0 +1,38 @@
+.masonry-brick {
+    margin: 2px;
+    display: none;
+    border: 1px solid black; padding:2px;margin-bottom: 10px;
+    width: 300px;
+}
+
+.masonry-brick.loaded {
+    display: block;
+}
+#gutter-opt-demo2 .item {
+    margin-bottom: 10px;
+}
+img {
+    width:100%;
+}
+h1 {
+    line-height: 20px;
+}
+a h1, a p {
+    text-decoration:none;
+    color: black;
+}
+
+h1.loader {
+    position: fixed;
+    top: 49%;
+    left: 40%;
+    background-color: white;
+    border: 1px solid black;
+    z-index: 9999;
+    height: 40px;
+    line-height: 40px;
+}
+
+.row-fluid {
+    margin-top: 15px;
+}

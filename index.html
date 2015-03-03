@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>AngularJS Masonry Infinite Scrolling Scraping</title>
+        <link href="//netdna.bootstrapcdn.com/bootswatch/2.3.2/united/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="styles/style.css">
+    </head>
+    <body class="" ng-app="kelcookApp">
+
+    <div class="container-fluid" ng-controller="SearchCtrl">
+        <div class="row-fluid">
+          <div class="span2 bs-docs-sidebar">
+              <form name="myForm" ng-submit="getRecipes(true)">
+                  <input type="text" ng-model="query" value="cookies">
+                  <input type="submit" value="Chercher" ng-click="startLoading()" />
+              </form>
+          </div>
+          <div class="span10">
+            <h1>Best recipes</h1>
+              <h1 class="loader" ng-show="busy">Loading more recipes...</h1>
+            <hr>
+              <div style="margin-left: 15px;">
+                  <div id="infinite-scroll" infinite-scroll="getRecipes(false)" infinite-scroll-disabled="busy" infinite-scroll-distance="1">
+                  <div masonry options="{ 'columnWidth': 400,'gutter': 5}">
+                      <div class="masonry-brick"  ng-repeat="item in items | orderBy:'-score'" emit-ng-repeat-finished>
+                          <a ng-href="{{ item.url }}" target="_blank">
+                              <img ng-src="{{ item.image }}" alt="A masonry brick">
+                              <h1 style="font-size: 15px;">{{ item.title }}</h1>
+                              <p>{{ item.author }}</p>
+                              <p>{{ item.score }}</p>
+                          </a>
+                      </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+
+	<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="http://passy.github.io/angular-masonry/bower_components/jquery-bridget/jquery.bridget.js"></script>
+    <script src="http://passy.github.io/angular-masonry/bower_components/get-style-property/get-style-property.js"></script>
+    <script src="http://passy.github.io/angular-masonry/bower_components/get-size/get-size.js"></script>
+    <script src="http://passy.github.io/angular-masonry/bower_components/eventEmitter/EventEmitter.js"></script>
+    <script src="http://passy.github.io/angular-masonry/bower_components/eventie/eventie.js"></script>
+    <script src="http://passy.github.io/angular-masonry/bower_components/doc-ready/doc-ready.js"></script>
+    <script src="http://passy.github.io/angular-masonry/bower_components/matches-selector/matches-selector.js"></script>
+    <script src="http://passy.github.io/angular-masonry/bower_components/outlayer/item.js"></script>
+    <script src="http://passy.github.io/angular-masonry/bower_components/outlayer/outlayer.js"></script>
+    <script src="http://passy.github.io/angular-masonry/bower_components/masonry/masonry.js"></script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script src="scripts/angular-masonry.js"></script>
+    <script src="scripts/infinit-scroll.js"></script>
+    <script src="scripts/imagesloaded.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/Controllers/SearchCtrl.js"></script>
+    <script src="scripts/Factories/RecipeFactory.js"></script>
+    <script src="scripts/directives/emitNgRepeatFinished.js"></script>
+    </body>
+</html>
