@@ -3,7 +3,8 @@ app.directive("emitNgRepeatFinished", function(){
         restrict: "A",
         link: function(scope, element){
             if (scope.$last){
-                scope.$emit('ngRepeatFinished');
+                // FIXME
+                // scope.$emit('ngRepeatFinished');
             }
         }
     }
