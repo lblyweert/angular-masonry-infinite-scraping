@@ -13,4 +13,4 @@ Masonry is useful to display blocks of different height.
 * Infinite-scroll
 * Ganon : php lib used to overstep CORS limitations during the process of scraping
 
-* Note : PHP server required in order to run Ganon *
+*Note : PHP server required in order to run Ganon*
