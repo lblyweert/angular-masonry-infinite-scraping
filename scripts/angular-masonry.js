@@ -82,9 +82,9 @@
           });
         element.masonry(options);
         scope.$on('ngRepeatFinished', function(){
-            //todo
-            element.masonry('reloadItems');
-            element.masonry();
+            // todo
+            // element.masonry('reloadItems');
+            // element.masonry();
         });
         scope.$on('$destroy', ctrl.destroy);
       }
