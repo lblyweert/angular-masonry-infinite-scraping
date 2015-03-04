@@ -15,67 +15,13 @@ else
 $mot_cle_brut = trim($_GET["recherche"]);
 $mot_cle = wd_remove_accents($mot_cle_brut);
 
-//$mot_cle = "cookies";
-
 $arrayResults = array ();
 
 $cuisineazURL = 'http://www.cuisineaz.com/recettes/recherche_v2.aspx?recherche='. $mot_cle;
 $septcentcinquantegURL = 'http://www.750g.com/recettes_'. $mot_cle .'.htm?page='. $page;
 $marmitonURL = 'http://www.marmiton.org/recettes/recherche.aspx?aqt='. $mot_cle .'';
 
-// CuisineAZ
-
-/*$cuisineaz = file_get_dom($cuisineazURL);
-
-$siteSource = "cuisineaz";
-
-foreach($cuisineaz('div[id="divRecette", class="rechRecette"]') as $element) {
-
-    foreach($element('a:first-child') as $lienRecette) {
-        $urlRecette = $lienRecette->href;
-    }
-
-    $nbEtoile=0;
-
-    foreach($element('span img') as $lienImage) {
-
-        foreach($lienImage->attributes as $lienImage => $value) {
-            if (($lienImage == "src" || $lienImage == "data-src") && $value != "http://images.cuisineaz.com/1x1-pixel.png") {
-                $urlImage = $value;
-            }
-        }
-    }
-
-    foreach($element('h2') as $titreRecette) {
-        $titreRecette = $titreRecette->getPlainText();
-    }
-
-    foreach($element('div[class="cazicon cazicon-star2"]') as $calculNoteRecette) {
-        $nbEtoile++;
-    }
-    foreach($element('div[class="cazicon cazicon-demistar2"]') as $calculNoteRecette) {
-        $nbEtoile+=0.5;
-    }
-
-    foreach($element('[class="rechCom"]') as $nbCommentairesRecette) {
-        $nbCommentaires = $nbCommentairesRecette->getPlainText();
-    }
-    if ($nbCommentaires == " ") {
-        $nbCommentaires = 0;
-    }
-
-    $arrayResults[] = array('SiteSource' => $siteSource,
-        'LienRecette' => $urlRecette,
-        'URLImage' => $urlImage,
-        'TitreRecette' => $titreRecette,
-        'NbCommentaires' => $nbCommentaires,
-        'NbEtoiles' => $nbEtoile,
-        'ScoreGlobal' => score_global($nbEtoile, $nbCommentaires));
-}*/
-
-
 // 750 grammes
-
 
 $siteSource = "750grammes";
 
@@ -116,46 +62,6 @@ foreach($septcentcinquanteg('li[data-type="recette", data-type="video"]') as $el
         'score' => score_global($nbEtoile, $nbCommentaires)
     );
 }
-
-
-/*$siteSource = "marmiton";
-
-$marmiton = file_get_dom($marmitonURL);
-
-foreach($marmiton('div[class="m_search_result"]') as $element) {
-
-    foreach($element('a') as $lienRecette) {
-        $urlRecette = "http://www.marmiton.org".$lienRecette->href;
-    }
-
-
-    foreach($element('script') as $node) {
-        $urlImage = $node->getInnerText();
-    }
-
-    foreach($element('div[class="m_search_titre_recette"] > a') as $titreRecette) {
-        $titreRecette = $titreRecette->getPlainText();
-    }
-
-    $nbEtoile = 0;
-
-    foreach($element('div[class="etoile1"] ') as $nbEtoilesRecette) {
-        $nbEtoile++;
-    }
-
-    foreach($element('div[class="m_search_nb_votes"]') as $nbCommentairesRecette) {
-        $nbCommentaires = str_replace(" votes)", "", $nbCommentairesRecette->getPlainText());
-        $nbCommentaires = str_replace("(", "", $nbCommentaires);
-    }
-
-    $arrayResults[] = array('SiteSource' => $siteSource,
-        'LienRecette' => $urlRecette,
-        'URLImage' => $urlImage,
-        'TitreRecette' => $titreRecette,
-        'NbCommentaires' => $nbCommentaires,
-        'NbEtoiles' => $nbEtoile,
-        'ScoreGlobal' => score_global($nbEtoile, $nbCommentaires));
-}*/
 
 // tri du tableau par score
 // $arrayResultsSorted = array_msort($arrayResults, array('score'=>SORT_DESC));
